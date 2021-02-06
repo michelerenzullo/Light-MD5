@@ -1,6 +1,6 @@
 # Light-MD5
-A very fast, simple, and optimized md5 alghorithm in c++ with static libs.
-![Original code]https://gist.github.com/creationix/4710780
+A very fast, simple, and optimized md5 alghorithm in c++ with static libs.  
+[Original code](https://gist.github.com/creationix/4710780)
 
 **Do you like this project? Support it by donating**
 
