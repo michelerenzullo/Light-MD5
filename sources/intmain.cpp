@@ -23,6 +23,5 @@
 	std::cout<<md5(my_str,my_str.length());                 // <-- == md5_process((uint8_t*)my_str.c_str(), ...)
 	 
 	return 0;
-}
 	}
 	

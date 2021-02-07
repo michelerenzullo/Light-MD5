@@ -29,9 +29,9 @@ std::string md5_process(uint8_t * initial_msg, size_t initial_len){
     uint32_t h[] = {0x67452301,0xefcdab89,0x98badcfe,0x10325476};        
 
     uint32_t new_len = ((((initial_len + 8) / 64) + 1) * 64) - 8;
-	
-	uint8_t msg[new_len+64] = {0};
-	memcpy(msg, initial_msg, initial_len);
+
+    uint8_t msg[new_len+64] = {0};
+    memcpy(msg, initial_msg, initial_len);
     msg[initial_len] = 128; 
  
     uint32_t bits_len = 8*initial_len;
