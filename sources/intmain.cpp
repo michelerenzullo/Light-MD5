@@ -1,19 +1,28 @@
-#include "lightmd5.h"
 #include <iostream>
+#include "lightmd5.h" // template constexpr require c++17: -std=c++17, if you can't use std::string md5_process(uint8_t*,size_t);
 
-	int main(){
-	uint8_t array_of_uint8[] = {109,105,107,105};
-	std::string my_md5 = md5(array_of_uint8, sizeof(array_of_uint8));
-	std::cout<<my_md5<<"\n";
+	int main(){	
+	uint8_t *uint8_ptr = new uint8_t[4];
+	uint8_ptr[0] = 109;
+	uint8_ptr[1] = 105;
+	uint8_ptr[2] = 107;
+	uint8_ptr[3] = 105;
+	std::cout<<md5(uint8_ptr, 4)<<"\n";
+	delete[] uint8_ptr;
 	
-	char word[] = "miki";   //<-- you have to reinterpret cast has uint8_t: reinterpret_cast<uint8_t*>(word) or (uint8_t*)word
-	my_md5 = md5((uint8_t*)word, strlen(word));
-	std::cout<<my_md5<<"\n";
+    uint8_t uint8_array[] = {109,105,107,105};
+	std::cout<<md5(uint8_array, sizeof(uint8_array))<<"\n"; // <-- == md5_process(uint8_array, ...)
 	
-	std::string my_str = "miki";   //<-- you have to reinterpret cast has uint8_t: reinterpret_cast<uint8_t*>(word) or (uint8_t*)word
-	my_md5 = md5((uint8_t*)my_str.c_str(), my_str.length());
-	std::cout<<my_md5;
+	const char *char_ptr = "miki"; 
+	std::cout<<md5(char_ptr,strlen(char_ptr))<<"\n";        // <-- == md5_process((uint8_t*)char_ptr, ...)
 	
+	char char_array[] = "miki"; 
+	std::cout<<md5(char_array,strlen(char_array))<<"\n";    // <-- == md5_process((uint8_t*)char_array, ...)
+	
+	std::string my_str = "miki"; 
+	std::cout<<md5(my_str,my_str.length());                 // <-- == md5_process((uint8_t*)my_str.c_str(), ...)
+	 
 	return 0;
+}
 	}
 	

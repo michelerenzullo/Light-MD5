@@ -1,7 +1,7 @@
 #include "lightmd5.h"
 
-std::string md5( uint8_t * initial_msg, size_t initial_len) {
-    
+std::string md5_process(uint8_t * initial_msg, size_t initial_len){
+	
     uint32_t r[] = {7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
                     5,  9, 14, 20, 5,  9, 14, 20, 5,  9, 14, 20, 5,  9, 14, 20,
                     4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,
@@ -26,18 +26,17 @@ std::string md5( uint8_t * initial_msg, size_t initial_len) {
         0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391};
  
    
-    uint32_t h[] = {0x67452301,0xefcdab89,0x98badcfe,0x10325476};
-    int new_len = ((((initial_len + 8) / 64) + 1) * 64) - 8;
-    
-	uint8_t *msg = new uint8_t[new_len+64]();
+    uint32_t h[] = {0x67452301,0xefcdab89,0x98badcfe,0x10325476};        
+
+    uint32_t new_len = ((((initial_len + 8) / 64) + 1) * 64) - 8;
 	
-    memcpy(msg, initial_msg, initial_len);
+	uint8_t msg[new_len+64] = {0};
+	memcpy(msg, initial_msg, initial_len);
     msg[initial_len] = 128; 
  
-    uint32_t bits_len = 8*initial_len; 
-    memcpy(msg + new_len, &bits_len, 4);         
-
- 
+    uint32_t bits_len = 8*initial_len;
+    memcpy(msg + new_len, &bits_len, 4);
+	
     for(uint32_t offset=0; offset<new_len; offset += (512/8)) {
 
         uint32_t *w = (uint32_t *) (msg + offset);
@@ -83,12 +82,10 @@ std::string md5( uint8_t * initial_msg, size_t initial_len) {
         h[3] += d;
  
     }
-    delete[] msg;
-	
 	char resultStr[33];
 	for(uint32_t i=0, offset=0; i<4; ++i)
 	 for(uint32_t j=0; j<4; ++j)
-	  offset+=snprintf(resultStr + offset, 2, "%02X", (uint8_t) (h[i] >> j*8));
+	  offset+=snprintf(resultStr + offset, 3, "%02X", (uint8_t) (h[i] >> j*8));
 	resultStr[32]= '\0';
 	return resultStr;
 }
