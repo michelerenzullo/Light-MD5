@@ -30,7 +30,7 @@ std::string md5_process(uint8_t * initial_msg, size_t initial_len){
 
     uint32_t new_len = ((((initial_len + 8) / 64) + 1) * 64) - 8;
 
-    uint8_t msg[new_len+64] = {0};
+    uint8_t *msg = new uint8_t[new_len+64]();
     memcpy(msg, initial_msg, initial_len);
     msg[initial_len] = 128; 
  
@@ -82,6 +82,8 @@ std::string md5_process(uint8_t * initial_msg, size_t initial_len){
         h[3] += d;
  
     }
+	delete[] msg;
+
 	char resultStr[33];
 	for(uint32_t i=0, offset=0; i<4; ++i)
 	 for(uint32_t j=0; j<4; ++j)
