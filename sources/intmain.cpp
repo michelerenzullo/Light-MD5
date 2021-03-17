@@ -9,8 +9,8 @@
 	uint8_ptr[3] = 105;
 	std::cout<<md5(uint8_ptr, 4)<<"\n";
 	delete[] uint8_ptr;
-	
-    uint8_t uint8_array[] = {109,105,107,105};
+
+	uint8_t uint8_array[] = {109,105,107,105};
 	std::cout<<md5(uint8_array, sizeof(uint8_array))<<"\n"; // <-- == md5_process(uint8_array, ...)
 	
 	const char *char_ptr = "miki"; 
