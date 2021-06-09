@@ -1,5 +1,5 @@
 #include <iostream>
-#include "lightmd5.h" // template constexpr require c++17: -std=c++17, if you can't use std::string md5_process(uint8_t*,size_t);
+#include "lightMD5.h" // template constexpr require c++17: -std=c++17, if you can't use std::string md5_process(uint8_t*,size_t);
 
 	int main(){	
 	uint8_t *uint8_ptr = new uint8_t[4];

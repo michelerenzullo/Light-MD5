@@ -1,4 +1,4 @@
-#include "lightmd5.h"
+#include "lightMD5.h"
 
 std::string md5_process(uint8_t * initial_msg, size_t initial_len){
 	
