@@ -39,7 +39,7 @@ std::string md5_process(uint8_t * initial_msg, size_t initial_len){
 	
     for(uint32_t offset=0; offset<new_len; offset += (512/8)) {
 
-        uint32_t *w = (uint32_t *) (msg + offset);
+        uint32_t *w = (uint32_t *)((uintptr_t)msg + offset);
         uint32_t a = h[0];
         uint32_t b = h[1];
         uint32_t c = h[2];
